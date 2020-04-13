@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>router</title>
+</head>
+
+<body>
+
+    <a href="#1">1</a>
+    <a href="#2">2</a>
+    <a href="#3">3</a>
+    <a href="#4">4</a>
+    <div id="app"></div>
+
+    <div id="div1" style="display: none;">1</div>
+    <div id="div2" style="display: none;">2</div>
+    <div id="div3" style="display: none;">3</div>
+    <div id="div4" style="display: none;">4</div>
+    <div id="div404" style="display: none;">404</div>
+
+
+    <script>
+        function route() {
+            let number = window.document.location.hash.split('#')[1] || 1
+            let app = document.querySelector('#app')
+
+            let div = document.querySelector(`#div${number}`) || document.querySelector('#div404')
+
+            div.style.display = 'block'
+            if (app.children.length > 0) {
+                app.children[0].style.display = 'none';
+                document.body.appendChild(app.children[0])
+                console.log(app.children.length)
+
+            }
+            app.appendChild(div)
+
+        }
+        route()
+
+
+        window.addEventListener('hashchange', () => {
+            route()
+        })
+
+
+    </script>
+</body>
+
+</html>
